@@ -201,9 +201,14 @@ export class MnFullpageDirective implements OnInit {
         }
 
         /**
+         * Ensure fullpage has not been initialized yet
+         */
+        if(typeof (<any>$).fn.fullpage.destroy === "function") {
+            (<any>$).fn.fullpage.destroy('all');
+        }
+
+        /**
          * Enable fullpage for the element
          */
         (<any>$)(this._el.nativeElement).fullpage(this.options);
     }
-
-}
